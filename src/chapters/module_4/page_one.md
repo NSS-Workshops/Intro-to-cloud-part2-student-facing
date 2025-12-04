@@ -1,3 +1,8 @@
-# Page 6: Lorem Ipsum Dolor Sit Amet
+# Page 6: Networking Basics and Security Groups
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+## Session Goals
+
+- Introduce foundational AWS networking concepts for application deployment
+- Explain how network boundaries, communication rules, and traffic flow work in AWS
+- Teach how Security Groups control access between services
+- Prepare students for later Terraform sessions involving networking and Security Group configuration
