@@ -1,14 +1,14 @@
 export const nav = [
   {
-    id: "module-1",
-    title: "ECS Concepts and Architecture",
+    id: "terraform",
+    title: "Terraform",
     description:
-      "Example module 1 description",
+      "Terraform Fundamentals",
     required: true,
   },
   {
     id: "module-2",
-    title: "Deploying the API to ECS via Terraform",
+    title: "Deploying the Workshop 1 infrastructure with Terraform",
     description:"Example module 2 description",
     required: true,
   },
