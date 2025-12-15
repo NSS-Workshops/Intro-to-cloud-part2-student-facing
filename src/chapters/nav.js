@@ -19,7 +19,7 @@ export const nav = [
   },
   {
     id: "module-4",
-    title: "Networking Basics and Security Groups",
+    title: "Networking and Security Groups",
     description: "Introduce foundational AWS networking concepts for application deployment & Teach how Security Groups control access between services.",
     required: true,
   },
