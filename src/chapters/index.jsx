@@ -20,8 +20,12 @@ import {tests as t2} from "./module_2/tests_2.js";
 // Module Three Imports
 import moduleThreePageOne from "./module_3/page_one.md?raw";
 
-// Module Four Imports
-import moduleFourPageOne from "./module_4/page_one.md?raw";
+// Networking Chapters
+import NetworkingPageOne from "./Networking/networking-intro.md?raw";
+import NetworkingPageTwo from "./Networking/diagramming.md?raw";
+import NetworkingPageThree from "./Networking/network-setup.md?raw";
+import {questions as networkQuestions} from "./Networking/networking-questions.jsx";
+
 
 // Module Five Imports 
 import moduleFivePageOne from "./module_5/page_one.md?raw";
@@ -109,7 +113,28 @@ export const chapters = [
     title: 'Networking Basics and Security Groups',
     sectionId: moduleFourId,
     previousChapterId: null,
-    content: moduleFourPageOne,
+    content: NetworkingPageOne,
+    exercise: null,
+    quiz: {component: () => <>
+       <h1>Checkpoint</h1>
+       <Checkpoint questions={networkQuestions}/>
+     </>
+    }
+  },
+  {
+    id: moduleFourId + "-page-2",
+    title: 'Understanding Networking Diagrams',
+    sectionId: moduleFourId,
+    previousChapterId: moduleFourId + "-page-1",
+    content: NetworkingPageTwo,
+    exercise: null,
+  },
+  {
+    id: moduleFourId + "-page-3",
+    title: 'Networking in Terraform',
+    sectionId: moduleFourId,
+    previousChapterId: moduleFourId + "-page-2",
+    content: NetworkingPageThree,
     exercise: null,
   },
   {

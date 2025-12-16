@@ -82,19 +82,24 @@ Outbound rules control the traffic *leaving* your instance. As mentioned, by def
 -   **`0.0.0.0/0`**: Allows your instance to initiate connections to any IP address on any port, using any protocol. This is the common default for simplicity, but for high-security environments, you might tighten this.
 -   **`sg-abcdef01234567890`**: If your web server needs to communicate with a backend database, you would configure an outbound rule here to allow traffic to the database's security group, often on port 3306 (the default port for MySQL). This ensures your web server can only talk to your database, not arbitrary external services.
 
-## Security Groups vs. Network Access Control Lists (NACLs)
+## The Mental Model: Who Does What in AWS Networking
 
-While both Security Groups and Network Access Control Lists (NACLs) act as virtual firewalls, they operate at different levels and have distinct characteristics:
+When you're thinking about AWS networking, it helps to separate **routing** from **security**. They solve different problems.
 
-| Feature           | Security Groups                       | Network Access Control Lists (NACLs)           |
-| :---------------- | :------------------------------------ | :--------------------------------------------- |
-| **Level**         | **Instance level** (virtual firewall for EC2 instances) | **Subnet level** (virtual firewall for subnets)    |
-| **Rules**         | **Allow rules only**                  | **Allow and Deny rules** (more granular control) |
-| **Stateful**      | **Yes** (automatic response traffic allowed)      | **No** (stateless; inbound & outbound rules must be explicitly defined and are independent) |
-| **Order of Rules**| All rules evaluated, most permissive takes precedence | Rules evaluated in order (lowest rule number first); first matching rule applies |
-| **Default**       | Denies all inbound, allows all outbound | Default VPC NACL allows all inbound & outbound; newly created NACLs deny all by default |
+Here’s a beginner-friendly mental model you can keep in your head.
 
-For most common use cases, Security Groups provide sufficient and easier-to-manage instance-level security. NACLs are typically used for more advanced network segmentation and an additional layer of security at the subnet level, often for highly regulated or ultra-secure environments. You'll primarily focus on Security Groups initially.
+
+### 🧭 Routing vs 🔐 Security (at a Glance)
+
+| Component        | Purpose                                   | Question it Answers                          | Example |
+|------------------|-------------------------------------------|-----------------------------------------------|--------|
+| **VPC**          | Private network boundary                   | “What belongs to this network?”               | Your AWS private network |
+| **Subnet**       | Slice of a VPC (AZ-scoped)                 | “Where does this resource live?”              | Public subnet in us-east-2a |
+| **Route Table**  | Controls **where traffic can go**          | “Is there a path from A to B?”                | Route to Internet Gateway |
+| **Internet Gateway (IGW)** | Connects VPC to the internet     | “Can traffic leave/enter the VPC?”            | Enables public access |
+| **Security Group** | Stateful firewall (allow rules only)    | “Who is allowed to talk to me?”               | Allow EC2 → RDS on 5432 |
+| **NACL** (optional) | Stateless subnet firewall              | “What traffic is blocked at subnet level?”   | Rarely used in simple setups |
+
 
 ## What We'll Do Next
 
