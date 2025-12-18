@@ -73,7 +73,7 @@ With the CLI, SSO into your AWS account, then run Terraform commands
 
 4. Test that your client side application has deployed by visiting the cloudfront domain. The value of `cloudfront_domain` in your CLI output. **Note** The site wont be fully functional yet until we deploy the API next.
 
-### Run the Server Side Github Actions 
+## Run the Server Side Github Actions 
 
 1. In your rock-of-ages-api repository update the following github actions secrets using the corresponding values in your CLI outputs
 
